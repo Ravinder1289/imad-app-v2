@@ -7,24 +7,14 @@ app.use(morgan('combined'));
 
 var articleOne={
     title:'article-One|Ravinder',
-    heading:'Article1',
+    heading:'ArticleOne',
     date:'Dec 8,2016',
     content:`<p>
                     This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
                     This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
                     This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                </p>
-                <p>
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                </p>
-                <p>
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
                 </p>`
-}
+};
 
 function createTemplate (data){
     var title=data.title;
@@ -32,33 +22,33 @@ function createTemplate (data){
     var heading=data.heading;
     var content=data.content;
     var htmlTemplate=
-    <html>
-    <head>
-        <title>
-            ${title}
-        </title>
-        <meta name="viewport" content="width-device-width, intial-scale=1"/>
-        <link href="/ui/style.css" rel="stylesheet" />
-    </head>
-    <body>
-        <div class="container">
-            <div>
-                <a href='/'>Home</a>
+        `<html>
+        <head>
+            <title>
+                ${title}
+            </title>
+            <meta name="viewport" content="width-device-width, intial-scale=1"/>
+            <link href="/ui/style.css" rel="stylesheet" />
+        </head>
+        <body>
+            <div class="container">
+                <div>
+                    <a href='/'>Home</a>
+                </div>
+                <hr/>
+                <div>
+                    <h3>${heading}</h3>
+                </div>
+                <div>
+                    ${date}
+                </div>
+                <div>
+                    ${content}
+                </div>
             </div>
-            <hr/>
-            <div>
-                <h3>${heading}</h3>
-            </div>
-            <div>
-                ${date}
-            </div>
-            <div>
-                ${content}
-            </div>
-        </div>
-    </body>
-</html>
- ; 
+        </body>
+        </html>`
+        ; 
  return htmlTemplate;
 }
 
@@ -67,7 +57,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/article-one',function(req,res){
-  res.sendFile(path.join(__dirname, 'ui', 'article-one.html'));
+  res.send(createTemplate(articleOne));
 });
 
 app.get('/article-two',function(req,res){

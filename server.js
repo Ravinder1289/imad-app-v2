@@ -5,16 +5,40 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleOne={
-    title:'article-One|Ravinder',
-    heading:'ArticleOne',
-    date:'Dec 8,2016',
-    content:`
-            <p>
-                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-            </p>`
+var articles={
+    'article-one':{
+        title:'article-One|Ravinder',
+        heading:'ArticleOne',
+        date:'Dec 8,2016',
+        content:`
+                <p>
+                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+                </p>`
+    },
+    'article-two':{
+        title:'article-Two|Ravinder',
+        heading:'ArticleTwo',
+        date:'Sept 6,2016',
+        content:`
+                <p>
+                    This is Article Two.This is Article Two.This is Article Two.This is Article Two.This is Article Two.
+                    This is Article Two.This is Article Two.This is Article Two.This is Article Two.This is Article Two.
+                    This is Article Two.This is Article Two.This is Article Two.This is Article Two.This is Article Two.
+                </p>`
+    },
+    'article-three':{
+        title:'article-Three|Ravinder',
+        heading:'ArticleThree',
+        date:'Nov 8,2016',
+        content:`
+                <p>
+                    This is Article Three.Hello!!!!!!!!
+                    This is Article Three.Hello!!!!!!!!
+                    This is Article Three.Hello!!!!!!!!
+                </p>`
+    }
 };
 
 function createTemplate (data){
@@ -57,8 +81,11 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-  res.send(createTemplate(articleOne));
+app.get('/:articleName',function(req,res){
+    //articleName==article-one
+    //articles[articleName]=={} content object for article one
+    var articleName=req.params.articleName;
+  res.send(createTemplate(articles[articleName]));
 });
 
 app.get('/article-two',function(req,res){

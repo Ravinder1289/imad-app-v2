@@ -9,11 +9,12 @@ var articleOne={
     title:'article-One|Ravinder',
     heading:'ArticleOne',
     date:'Dec 8,2016',
-    content:`<p>
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                    This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
-                </p>`
+    content:`
+            <p>
+                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+                This is Article One.This is Article One.This is Article One.This is Article One.This is Article One.
+            </p>`
 };
 
 function createTemplate (data){
